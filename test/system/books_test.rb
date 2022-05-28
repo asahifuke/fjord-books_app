@@ -25,12 +25,13 @@ class BooksTest < ApplicationSystemTestCase
   end
 
   test 'ページネーションが表示できるか' do
-    4.times do
+    4.times do |n|
       visit new_book_path
       fill_in 'メモ', with: @book.memo
       fill_in '題名', with: @book.title
       click_on '登録する'
     end
+
     visit books_url
     assert_selector 'span', text: '次'
   end
