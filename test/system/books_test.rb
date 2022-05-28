@@ -4,13 +4,14 @@ require 'application_system_test_case'
 
 class BooksTest < ApplicationSystemTestCase
   BOOKS_JA_PATH = '/books?locale=ja'
+  BOOKS_EN_PATH = '/books?locale=en'
 
   setup do
     @book = books(:one)
   end
 
   test '英語の一覧画面にアクセスした時' do
-    visit books_url
+    visit BOOKS_EN_PATH
     assert_selector 'h1', text: 'Books'
   end
 
@@ -48,7 +49,7 @@ class BooksTest < ApplicationSystemTestCase
   end
 
   test '書籍の新規作成' do
-    visit books_url
+    visit BOOKS_EN_PATH
     click_on 'New Book'
 
     fill_in 'Memo',  with: @book.memo
@@ -60,7 +61,7 @@ class BooksTest < ApplicationSystemTestCase
   end
 
   test '英語の画面で書籍の更新' do
-    visit books_url
+    visit BOOKS_EN_PATH
     click_on 'Edit', match: :first
 
     fill_in 'Memo',  with: @book.memo
@@ -84,7 +85,7 @@ class BooksTest < ApplicationSystemTestCase
   end
 
   test '英語の画面で書籍の削除' do
-    visit books_url
+    visit BOOKS_EN_PATH
     page.accept_confirm do
       click_on 'Destroy', match: :first
     end
