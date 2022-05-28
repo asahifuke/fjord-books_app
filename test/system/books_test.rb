@@ -7,12 +7,12 @@ class BooksTest < ApplicationSystemTestCase
     @book = books(:one)
   end
 
-  test 'visiting the index' do
+  test '一覧画面が表示できるか' do
     visit books_url
     assert_selector 'h1', text: '本'
   end
 
-  test 'creating a Book' do
+  test '本の新規作成できるか' do
     visit books_url
     click_on '新規作成'
 
@@ -24,7 +24,18 @@ class BooksTest < ApplicationSystemTestCase
     click_on '戻る'
   end
 
-  test 'updating a Book' do
+  test 'ページネーションが表示できるか' do
+    4.times do |n|
+      visit new_book_path
+      fill_in 'メモ', with: @book.memo
+      fill_in '題名', with: @book.title
+      click_on '登録する'
+    end
+    visit books_url
+    assert_selector 'span', text: '次'
+  end
+
+  test '本を更新できるか' do
     visit books_url
     click_on '編集', match: :first
 
@@ -36,7 +47,7 @@ class BooksTest < ApplicationSystemTestCase
     click_on '戻る'
   end
 
-  test 'destroying a Book' do
+  test '本を削除できるか' do
     visit books_url
     page.accept_confirm do
       click_on '削除', match: :first
