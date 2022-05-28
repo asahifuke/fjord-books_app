@@ -9,39 +9,39 @@ class BooksTest < ApplicationSystemTestCase
 
   test 'visiting the index' do
     visit books_url
-    assert_selector 'h1', text: 'Books'
+    assert_selector 'h1', text: '本'
   end
 
   test 'creating a Book' do
     visit books_url
-    click_on 'New Book'
+    click_on '新規作成'
 
-    fill_in 'Memo', with: @book.memo
-    fill_in 'Title', with: @book.title
-    click_on 'Create Book'
+    fill_in 'メモ', with: @book.memo
+    fill_in '題名', with: @book.title
+    click_on '登録する'
 
-    assert_text 'Book was successfully created'
-    click_on 'Back'
+    assert_text '本が作成されました。'
+    click_on '戻る'
   end
 
   test 'updating a Book' do
     visit books_url
-    click_on 'Edit', match: :first
+    click_on '編集', match: :first
 
-    fill_in 'Memo', with: @book.memo
-    fill_in 'Title', with: @book.title
-    click_on 'Update Book'
+    fill_in 'メモ', with: @book.memo
+    fill_in '題名', with: @book.title
+    click_on '更新する'
 
-    assert_text 'Book was successfully updated'
-    click_on 'Back'
+    assert_text '本が更新されました。'
+    click_on '戻る'
   end
 
   test 'destroying a Book' do
     visit books_url
     page.accept_confirm do
-      click_on 'Destroy', match: :first
+      click_on '削除', match: :first
     end
 
-    assert_text 'Book was successfully destroyed'
+    assert_text '本が削除されました。'
   end
 end
