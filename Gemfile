@@ -58,3 +58,4 @@ gem 'net-pop'
 gem 'net-smtp'
 
 gem 'carrierwave'
+gem 'pry-rails'

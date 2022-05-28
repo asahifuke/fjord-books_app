@@ -1,0 +1,16 @@
+ja:
+  books: "書籍"
+  new_book: "新規書籍"
+  title: "タイトル"
+  memo: "メモ"
+  author: "著者"
+  picture: "写真"
+  edit: "編集"
+  back: "戻る"
+  editing_book: "本の編集"
+  show: "詳細"
+  destroy: "削除"
+  book_was_successfully_created: '書籍が正常に作成されました。' 
+  book_was_successfully_updated: '書籍が正常に更新されました。'
+  book_was_successfully_destroyed: '書籍を正常に削除しました。'
+  create_book: '書籍の作成'
