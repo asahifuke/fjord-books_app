@@ -3,6 +3,8 @@
 require 'application_system_test_case'
 
 class BooksTest < ApplicationSystemTestCase
+  BOOKS_JA_PATH = '/books?locale=ja'
+
   setup do
     @book = books(:one)
   end
@@ -13,7 +15,7 @@ class BooksTest < ApplicationSystemTestCase
   end
 
   test '日本語の一覧画面にアクセスした時' do
-    visit '/books?locale=ja'
+    visit BOOKS_JA_PATH
     assert_selector 'h1', text: '書籍'
     assert_selector 'a',  text: '詳細'
     assert_selector 'a',  text: '編集'
@@ -29,8 +31,6 @@ class BooksTest < ApplicationSystemTestCase
     assert_selector 'label', text: 'メモ'
     assert_selector 'label', text: '著者'
     assert_selector 'label', text: '写真'
-    # 危険　テストできていない！！
-    # assert_selector "input", text: '書籍の作成'
   end
 
   test '日本語の詳細画面にアクセスした時' do
@@ -59,7 +59,7 @@ class BooksTest < ApplicationSystemTestCase
     click_on 'Back'
   end
 
-  test '書籍の更新' do
+  test '英語の画面で書籍の更新' do
     visit books_url
     click_on 'Edit', match: :first
 
@@ -71,12 +71,33 @@ class BooksTest < ApplicationSystemTestCase
     click_on 'Back'
   end
 
-  test '書籍の削除' do
+  test '日本語の画面で書籍の更新' do
+    visit BOOKS_JA_PATH
+    click_on '編集', match: :first
+
+    fill_in 'メモ',  with: @book.memo
+    fill_in 'タイトル', with: @book.title
+    click_on '書籍の更新'
+
+    assert_text '書籍が正常に更新されました。'
+    click_on '戻る'
+  end
+
+  test '英語の画面で書籍の削除' do
     visit books_url
     page.accept_confirm do
       click_on 'Destroy', match: :first
     end
 
     assert_text 'Book was successfully destroyed'
+  end
+
+  test '日本語の画面で書籍の削除' do
+    visit BOOKS_JA_PATH
+    page.accept_confirm do
+      click_on '削除', match: :first
+    end
+
+    assert_text '書籍を正常に削除しました。'
   end
 end
