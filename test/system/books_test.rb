@@ -25,7 +25,7 @@ class BooksTest < ApplicationSystemTestCase
   end
 
   test 'ページネーションが表示できるか' do
-    4.times do |n|
+    4.times do
       visit new_book_path
       fill_in 'メモ', with: @book.memo
       fill_in '題名', with: @book.title
