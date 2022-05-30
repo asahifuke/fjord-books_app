@@ -10,32 +10,36 @@ class UserTest < ActiveSupport::TestCase
     @dave  = users(:dave)
   end
 
-  # test "following?のテスト" do
-  #   assert @alice.following?(@bob)
-  #   refute @alice.following?(@carol)
-  #   refute @alice.following?(@dave)
-  #   refute @bob.following?(@alice)
-  #   refute @bob.following?(@carol)
-  #   refute @bob.following?(@dave)
-  #   refute @carol.following?(@alice)
-  #   refute @carol.following?(@bob)
-  #   assert @carol.following?(@dave)
-  #   refute @dave.following?(@alice)
-  #   refute @dave.following?(@bob)
-  #   refute @dave.following?(@alice)
-  #   [true, ]
-  #   aaa.each do |aaa, bbb, ccc|
-  #     if aaa
-  #       assert @alice.following?(@bob)
-  #     else
-  #       refute @alice.following?(@carol)
-  #     end
-  #   end
-  # end
+  # ！！注意！！どれだけテストするか質問する
+  test "following?のテスト" do
+    assert @alice.following?(@bob)
+    refute @alice.following?(@carol)
+    refute @alice.following?(@dave)
+    refute @bob.following?(@alice)
+    refute @bob.following?(@carol)
+    refute @bob.following?(@dave)
+    refute @carol.following?(@alice)
+    refute @carol.following?(@bob)
+    assert @carol.following?(@dave)
+    refute @dave.following?(@alice)
+    refute @dave.following?(@bob)
+    refute @dave.following?(@alice)
+  end
 
-  # test "followed_by?のテスト" do
-  #   assert @alice.followed_by?(@alice)
-  # end
+  # ！！注意！！どれだけテストするか質問する
+  test "followed_by?のテスト" do
+    assert @bob.followed_by?(@alice)
+    refute @alice.followed_by?(@bob)
+    refute @bob.followed_by?(@carol)
+  end
+
+  test "follow・unfollowのテスト" do
+    refute @bob.following?(@carol)
+    @bob.follow(@carol)
+    assert @bob.following?(@carol)
+    @bob.unfollow(@carol)
+    refute @bob.following?(@carol)
+  end
 
   test "name_or_emailのテスト" do
     assert_equal @alice.name, @alice.name_or_email
