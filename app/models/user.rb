@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  has_secure_password
+
   def following?(user)
     active_relationships.where(following_id: user.id).exists?
   end
