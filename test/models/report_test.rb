@@ -4,12 +4,12 @@ require 'test_helper'
 
 class ReportTest < ActiveSupport::TestCase
   setup do
-    @bob_report = Report.find_by(user_id: 902541635)
+    @bob_report = reports(:bob_report)
   end
 
   test "editable?のテスト" do
-    alice = User.find_by(email: 'alice@email.com')
-    bob   = User.find_by(email: 'bob@email.com')
+    alice = users(:alice)
+    bob   = users(:bob)
     assert @bob_report.editable?(bob)
     refute @bob_report.editable?(alice)
   end

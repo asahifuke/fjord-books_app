@@ -5,6 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 alice:
+  name: 'alice'
   email: 'alice@email.com'
   encrypted_password: <%= BCrypt::Password.create('password') %>
 
