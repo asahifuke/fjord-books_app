@@ -7,41 +7,53 @@ class BooksTest < ApplicationSystemTestCase
     @book = books(:one)
   end
 
-  test 'visiting the index' do
+  test '一覧画面が表示できるか' do
     visit books_url
-    assert_selector 'h1', text: 'Books'
+    assert_selector 'h1', text: '本'
   end
 
-  test 'creating a Book' do
+  test '本の新規作成できるか' do
     visit books_url
-    click_on 'New Book'
+    click_on '新規作成'
 
-    fill_in 'Memo', with: @book.memo
-    fill_in 'Title', with: @book.title
-    click_on 'Create Book'
+    fill_in 'メモ', with: @book.memo
+    fill_in '題名', with: @book.title
+    click_on '登録する'
 
-    assert_text 'Book was successfully created'
-    click_on 'Back'
+    assert_text '本が作成されました。'
+    click_on '戻る'
   end
 
-  test 'updating a Book' do
-    visit books_url
-    click_on 'Edit', match: :first
-
-    fill_in 'Memo', with: @book.memo
-    fill_in 'Title', with: @book.title
-    click_on 'Update Book'
-
-    assert_text 'Book was successfully updated'
-    click_on 'Back'
-  end
-
-  test 'destroying a Book' do
-    visit books_url
-    page.accept_confirm do
-      click_on 'Destroy', match: :first
+  test 'ページネーションが表示できるか' do
+    4.times do |n|
+      visit new_book_path
+      fill_in 'メモ', with: @book.memo
+      fill_in '題名', with: @book.title
+      click_on '登録する'
     end
 
-    assert_text 'Book was successfully destroyed'
+    visit books_url
+    assert_selector 'span', text: '次'
+  end
+
+  test '本を更新できるか' do
+    visit books_url
+    click_on '編集', match: :first
+
+    fill_in 'メモ', with: @book.memo
+    fill_in '題名', with: @book.title
+    click_on '更新する'
+
+    assert_text '本が更新されました。'
+    click_on '戻る'
+  end
+
+  test '本を削除できるか' do
+    visit books_url
+    page.accept_confirm do
+      click_on '削除', match: :first
+    end
+
+    assert_text '本が削除されました。'
   end
 end
