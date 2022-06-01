@@ -7,30 +7,18 @@ class UserTest < ActiveSupport::TestCase
     @alice = users(:alice)
     @bob   = users(:bob)
     @carol = users(:carol)
-    @dave  = users(:dave)
   end
 
   # ！！注意！！どれだけテストするか質問する
   test "following?のテスト" do
     assert @alice.following?(@bob)
     refute @alice.following?(@carol)
-    refute @alice.following?(@dave)
-    refute @bob.following?(@alice)
-    refute @bob.following?(@carol)
-    refute @bob.following?(@dave)
-    refute @carol.following?(@alice)
-    refute @carol.following?(@bob)
-    assert @carol.following?(@dave)
-    refute @dave.following?(@alice)
-    refute @dave.following?(@bob)
-    refute @dave.following?(@alice)
   end
 
   # ！！注意！！どれだけテストするか質問する
   test "followed_by?のテスト" do
     assert @bob.followed_by?(@alice)
     refute @alice.followed_by?(@bob)
-    refute @bob.followed_by?(@carol)
   end
 
   test "follow・unfollowのテスト" do
