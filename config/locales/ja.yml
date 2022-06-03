@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+      models:
+        book: 書籍
+      attributes:
+        book:
+          title: 'タイトル'
+          memo: 'メモ'
+          author: '著者'
+          picture: '写真'
+  new: '新規%{model_name}'
+  edit: '編集'
+  back: '戻る'
+  editing: '%{model_name}の編集'
+  show: '詳細'
+  destroy: '削除'
+  created_notice: '%{model_name}が正常に作成されました。' 
+  updated_notice: '%{model_name}が正常に更新されました。'
+  destroy_notice: '%{model_name}を正常に削除しました。'
+  create: '%{model_name}の作成'
+  update: '%{model_name}の更新'
+  are_you_sure?: '本当に削除しても良いですか？'
