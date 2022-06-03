@@ -12,7 +12,7 @@ class BooksTest < ApplicationSystemTestCase
 
   test '英語の一覧画面にアクセスした時' do
     visit BOOKS_EN_PATH
-    assert_selector 'h1', text: 'Books'
+    assert_selector 'h1', text: 'Book'
   end
 
   test '日本語の一覧画面にアクセスした時' do
