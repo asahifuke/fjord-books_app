@@ -43,7 +43,7 @@ class BooksTest < ApplicationSystemTestCase
 
   test '日本語の編集画面にアクセスした時' do
     visit "/books/#{@book.id}/edit?locale=ja"
-    assert_selector 'h1', text: '本の編集'
+    assert_selector 'h1', text: '書籍の編集'
     assert_selector 'a',  text: '詳細'
     assert_selector 'a',  text: '戻る'
   end

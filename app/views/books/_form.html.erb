@@ -32,6 +32,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit controller.action_name == 'new' ? t('create_book') : t('update_book') %>
+    <%= form.submit controller.action_name == 'new' ? t('create', model_name: Book.model_name.human) : t('update', model_name: Book.model_name.human) %>
   </div>
 <% end %>
