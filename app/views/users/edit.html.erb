@@ -1,0 +1,16 @@
+<h1>ユーザー編集画面</h1>
+<%= form_with model: @user do |form| %>
+  <%= form.label :email %>
+  <%= form.text_field :email %>
+
+  <%= form.label :address %>
+  <%= form.text_field :address %>
+
+  <%= form.label :zip_code %>
+  <%= form.text_field :zip_code %>
+
+  <%= form.label :introduction %>
+  <%= form.text_area :introduction, size: "60x10" %>
+
+  <%= form.submit %>
+<% end %>
