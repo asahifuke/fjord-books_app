@@ -7,3 +7,13 @@
 alice: 
   email: 'alice@gamil.com'
   encrypted_password: <%= BCrypt::Password.create('password') %>
+
+dave: 
+  email: 'dave@gamil.com'
+  encrypted_password: <%= BCrypt::Password.create('password') %>
+
+<% 20.times do |n| %>
+user_<%= n %>:
+  email: <%= "user#{n}@example.com" %>
+  encrypted_password: <%= BCrypt::Password.create('password') %>
+<% end %>

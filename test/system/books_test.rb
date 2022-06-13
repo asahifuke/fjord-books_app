@@ -3,20 +3,33 @@
 require 'application_system_test_case'
 
 class BooksTest < ApplicationSystemTestCase
+  include Devise::Test::IntegrationHelpers
   setup do
     @book = books(:one)
-    visit new_user_session_path
-    fill_in 'Email', with: 'alice@gamil.com'
-    fill_in 'Password', with: 'password'
-    click_on 'Log in'
+    @alice = users(:alice)
   end
 
+  # 必須のテスト
+  test 'アプリの利用にはログインを必須とする' do
+    visit books_path
+    assert_selector 'h2', text: 'ログイン'
+    visit new_book_path
+    assert_selector 'h2', text: 'ログイン'
+    visit book_path(@book)
+    assert_selector 'h2', text: 'ログイン'
+    visit edit_book_path(@book)
+    assert_selector 'h2', text: 'ログイン'
+  end
+
+  # 任意のテスト
   test 'visiting the index' do
+    sign_in @alice
     visit books_url
     assert_selector 'h1', text: '本'
   end
 
   test 'creating a Book' do
+    sign_in @alice
     visit books_url
     click_on '新規作成'
 
@@ -29,6 +42,7 @@ class BooksTest < ApplicationSystemTestCase
   end
 
   test 'updating a Book' do
+    sign_in @alice
     visit books_url
     click_on '編集', match: :first
 
@@ -41,6 +55,7 @@ class BooksTest < ApplicationSystemTestCase
   end
 
   test 'destroying a Book' do
+    sign_in @alice
     visit books_url
     page.accept_confirm do
       click_on '削除', match: :first

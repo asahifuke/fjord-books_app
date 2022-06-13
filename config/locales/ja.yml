@@ -7,6 +7,13 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        address: '住所'
+        introduction: '自己紹介文'
+        zip_code: '郵便番号'
   date:
     abbr_day_names:
     - 日
@@ -207,6 +214,7 @@ ja:
     pm: 午後
   views:
     common:
+      index: "%{model}一覧"
       show: 詳細
       edit: 編集
       destroy: 削除
