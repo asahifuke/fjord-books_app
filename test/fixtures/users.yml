@@ -17,3 +17,7 @@ user_<%= n %>:
   email: <%= "user#{n}@example.com" %>
   encrypted_password: <%= BCrypt::Password.create('password') %>
 <% end %>
+
+mailer_user:
+  email: <%= ENV["GOOGLE_MAIL_ADDRESS"] %>
+  encrypted_password: <%= BCrypt::Password.create('password') %>

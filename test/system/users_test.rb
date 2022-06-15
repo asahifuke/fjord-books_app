@@ -1,4 +1,6 @@
-require "application_system_test_case"
+# frozen_string_literal: true
+
+require 'application_system_test_case'
 
 class UsersTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
@@ -52,6 +54,7 @@ class UsersTest < ApplicationSystemTestCase
   end
 
   test 'アプリの利用にはログインを必須とする' do
+    sign_out :user
     visit users_path
     assert_selector 'h2', text: 'ログイン'
     visit user_path(@alice)
@@ -74,8 +77,13 @@ class UsersTest < ApplicationSystemTestCase
     assert_text 'アカウント情報を変更しました。'
   end
 
-  # # test 'パスワードを忘れたらパスワード再設定メールを経由してパスワードを再設定できる' do
-  # # end
+  test 'パスワードを忘れたらパスワード再設定メールを経由してパスワードを再設定できる' do
+    sign_out :user
+    visit new_user_password_path
+    fill_in 'Eメール', with: ENV['GOOGLE_MAIL_ADDRESS']
+    click_on 'パスワードの再設定方法を送信する'
+    assert_text 'パスワードの再設定について数分以内にメールでご連絡いたします。'
+  end
 
   test 'Deviseが用意した画面も日本語で表示する。それ以外の新しく追加した画面もi18nで日本語化する（英語表示は考慮不要）' do
     visit new_user_session_path
