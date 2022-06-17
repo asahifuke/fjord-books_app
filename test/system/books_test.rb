@@ -3,12 +3,11 @@
 require 'application_system_test_case'
 
 class BooksTest < ApplicationSystemTestCase
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @book = books(:one)
-    visit new_user_session_path
-    fill_in 'Eメール', with: 'alice@email.com'
-    fill_in 'パスワード', with: 'password'
-    click_on 'ログイン'
+    sign_in users(:alice)
   end
 
   test 'visiting the index' do
