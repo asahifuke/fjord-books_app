@@ -6,3 +6,8 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+task testing: :environment do
+  sh 'rspec ./spec/system/users_spec.rb'
+  sh 'rubocop'
+end

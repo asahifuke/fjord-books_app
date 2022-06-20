@@ -1,7 +1,7 @@
 <h1><%= t('views.common.title_show', name: User.model_name.human) %></h1>
 
 <% if @user.image.attached? %>
-  <%= image_tag @user.image %>
+  <%= image_tag @user.image.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0").processed %>
 <% end %>
 
 <p>

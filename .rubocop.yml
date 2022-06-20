@@ -2,3 +2,9 @@ inherit_gem:
   rubocop-fjord:
     - "config/rubocop.yml"
     - "config/rails.yml"
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+Style/BlockComments:
+  Exclude:
+    - 'spec/**/*'
