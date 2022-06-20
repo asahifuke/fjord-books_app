@@ -2,10 +2,10 @@
 
 alice_report:
   user: alice
-  title: MyString
-  content: MyText
+  title: MyString1
+  content: MyText1
 
 bob_report:
   user: bob
-  title: MyString
-  content: MyText
+  title: MyString2
+  content: MyText2
