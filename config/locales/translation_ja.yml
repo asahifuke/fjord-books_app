@@ -16,3 +16,6 @@ ja:
         address: 住所
         self_introduction: 自己紹介文
         avatar: ユーザ画像
+      user_follow:
+        follower: フォロワー
+        followed: フォロー

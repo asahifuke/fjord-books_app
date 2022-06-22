@@ -1,0 +1,7 @@
+follow1:
+  follower: alice
+  followed: bob
+
+follow2:
+  follower: bob
+  followed: cavin
