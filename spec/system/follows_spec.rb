@@ -50,8 +50,5 @@ RSpec.describe 'Follows', type: :system do
       click_on 'フォロワー数: 1'
       expect(page).to have_selector 'h1', text: 'フォロワー'
     end
-
-    # it 'ユーザー詳細画面、フォロー一覧画面、フォロワー一覧画面のスクリーンショットを載せる'
-    # it 'rubocopをパスさせる（要スクリーンショット）'
   end
 end
