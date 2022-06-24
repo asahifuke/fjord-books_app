@@ -75,6 +75,11 @@ class UsersTest < ApplicationSystemTestCase
     fill_in '現在のパスワード', with: 'password'
     click_on '更新'
     assert_text 'アカウント情報を変更しました。'
+    visit user_path(@alice)
+    assert_text 'carol@gamil.com'
+    assert_text '030-8570'
+    assert_text '青森県青森市長島一丁目1-1'
+    assert_text 'よろしくお願いします。'
   end
 
   test 'パスワードを忘れたらパスワード再設定メールを経由してパスワードを再設定できる' do

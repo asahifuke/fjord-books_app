@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
-  protected
+  private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:zip_code, :address, :introduction])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[zip_code address introduction])
   end
 end
