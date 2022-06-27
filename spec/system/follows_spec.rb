@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Follows', type: :system do
-  fixtures :users
+  fixtures :users, :user_follows
 
   let(:alice) { users(:alice) }
   let(:bob) { users(:bob) }
