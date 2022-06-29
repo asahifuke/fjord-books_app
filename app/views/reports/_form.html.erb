@@ -1,0 +1,17 @@
+<%= form_with model: @report do |form| %>
+  <div>
+    <%= form.label :title, 'タイトル' %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :body, '本文' %>
+    <%= form.text_area :body %>
+  </div>
+
+  <% if action_name == "new" %>
+    <%= form.submit '登録する' %>
+  <% else %>
+    <%= form.submit '更新する' %>
+  <% end %>
+<% end %>

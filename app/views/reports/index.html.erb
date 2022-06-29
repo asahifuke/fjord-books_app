@@ -1,1 +1,12 @@
 <h1>日報</h1>
+<%= link_to '新規作成', new_report_path %>
+
+<%= @reports.each do |report| %>
+  <%= report.title %>
+  <%= report.body %>
+  <%= report.created_at %>
+  <%= link_to '詳細', report_path(report) %>
+  <%= link_to '編集!', edit_report_path(report) %>
+  <%= link_to '削除', report_path(report), method: :delete, data: { confirm: t('views.common.delete_confirm') } %>
+<% end %>
+

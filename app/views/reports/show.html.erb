@@ -1,0 +1,19 @@
+<h1>日報の詳細</h1>
+
+<p>
+  # <strong><%= Book.human_attribute_name(:title) %>:</strong>
+  <%= @report.title %>
+</p>
+
+<p>
+  # <strong><%= Book.human_attribute_name(:memo) %>:</strong>
+  <%= @report.body %>
+</p>
+
+<p>
+  <strong><%= Book.human_attribute_name(:author) %>:</strong>
+  <%= @report.created_at %>
+</p>
+
+<%= link_to t('views.common.edit'), edit_report_path(@report) %> |
+<%= link_to t('views.common.back'), reports_path %>

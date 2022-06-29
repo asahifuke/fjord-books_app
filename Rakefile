@@ -6,7 +6,3 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
-
-task testing: :environment do
-  sh 'bundle exec rubocop'
-end

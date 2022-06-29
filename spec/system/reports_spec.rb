@@ -1,18 +1,59 @@
 require 'rails_helper'
 
 RSpec.describe "Reports", type: :system do
-  fixtures :users
+  fixtures :users, :reports
   # describe '行う作業' do
   #   it 'Railsアプリに reports（日報） の CRUD （一覧、個別、作成、編集、削除）の機能を追加する。'
   #   it 'books と reports それぞれにコメントがつけられるようにする。'
   #   it 'ポリモーフィック関連を使ってbookに付くコメントとreportに付くコメントを共通のコードで動くようにする。'
+  # CRUDを作る。入力項目はタイトルと本文だけで良い。created_atの日付を日報の投稿日とする
   # end
 
   describe '必須要件' do
-    it 'reportsのCRUDを作る。入力項目はタイトルと本文だけで良い。created_atの日付を日報の投稿日とする' do
+    before do
       sign_in users(:alice)
       visit reports_path
       expect(page).to have_content '日報'
+    end
+
+    it 'reportsの作成' do
+      sample_title = '新規タイトルテスト'
+      sample_body  = '新規本文テスト'
+      expect(page).not_to have_content sample_title
+      expect(page).not_to have_content sample_body
+      click_on '新規作成'
+      fill_in 'タイトル', with: sample_title
+      fill_in '本文', with: sample_body
+      click_on '登録する'
+      expect(page).to have_content sample_title
+      expect(page).to have_content sample_body
+    end
+
+    it 'reportsの編集' do
+      sample_title = '更新タイトルテスト'
+      sample_body  = '更新本文テスト'
+      expect(page).not_to have_content sample_title
+      expect(page).not_to have_content sample_body
+      click_on '編集!'
+      expect(page).to have_content '日報の編集'
+      fill_in 'タイトル', with: sample_title
+      fill_in '本文', with: sample_body
+      click_on '更新する'
+      expect(page).to have_content sample_title
+      expect(page).to have_content sample_body
+    end
+
+    it 'reportsの削除' do
+      sample_title = '新規タイトルテスト'
+      sample_body  = '新規本文テスト'
+      report = reports(:report1)
+      expect(page).to have_content report.title
+      expect(page).to have_content report.body
+      page.accept_confirm do
+        click_on '削除', match: :first
+      end
+      expect(page).not_to have_content report.title
+      expect(page).not_to have_content report.body
     end
 
     # it '日報を更新・削除できるのはその日報を投稿した本人のみ（本のCRUDは特に制限なし）'
