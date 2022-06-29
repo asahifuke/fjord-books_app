@@ -12,9 +12,7 @@ class UserFollowsController < ApplicationController
   end
 
   def create
-    user_follow = current_user.active_relationships.new
-    user_follow.followed_id = params[:user_id]
-    user_follow.save
+    user_follow = current_user.active_relationships.create(followed_id: params[:user_id])
     redirect_to user_path(user_follow.followed_id)
   end
 
