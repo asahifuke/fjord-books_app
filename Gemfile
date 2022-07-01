@@ -48,6 +48,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
+  gem 'rspec-rails'
   gem 'selenium-webdriver', '< 4'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
@@ -61,7 +62,7 @@ gem 'net-pop'
 gem 'net-smtp'
 
 gem 'carrierwave'
-gem 'kaminari'
 gem 'devise'
 gem 'devise-i18n'
 gem 'image_processing', '~> 1.2'
+gem 'kaminari'
