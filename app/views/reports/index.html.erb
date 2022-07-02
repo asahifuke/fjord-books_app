@@ -1,12 +1,29 @@
-<h1>日報</h1>
-<%= link_to '新規作成', new_report_path %>
+<h1><%= Report.model_name.human %></h1>
 
-<%= @reports.each do |report| %>
-  <%= report.title %>
-  <%= report.body %>
-  <%= report.created_at %>
-  <%= link_to '詳細', report_path(report) %>
-  <%= link_to '編集!', edit_report_path(report) %>
-  <%= link_to '削除', report_path(report), method: :delete, data: { confirm: t('views.common.delete_confirm') } %>
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <th><%= Report.human_attribute_name(:title) %></th>
+      <th><%= Report.human_attribute_name(:body) %></th>
+      <th><%= Report.human_attribute_name(:created_at) %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.title %></td>
+        <td><%= report.body %></td>
+        <td><%= report.created_at.strftime("%Y年%m月%d日") %></td>
+        <td><%= link_to t('views.common.show'), report_path(report) %></td>
+        <% if current_user == report.user %>
+          <td><%= link_to t('views.common.edit'), edit_report_path(report) %></td>
+          <td><%= link_to t('views.common.destroy'), report_path(report), method: :delete, data: { confirm: t('views.common.delete_confirm') } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('views.common.new'), new_report_path %>
