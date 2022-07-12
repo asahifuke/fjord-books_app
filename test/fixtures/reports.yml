@@ -1,0 +1,9 @@
+alice_report:
+  user: alice
+  title: aliceのタイトル
+  body: aliceの本文
+
+bob_report:
+  user: bob
+  title: bobのタイトル
+  body:  bobの本文
