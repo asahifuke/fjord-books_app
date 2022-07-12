@@ -2,7 +2,7 @@
 
 class ReportsController < ApplicationController
   def index
-    @reports = Report.all
+    @reports = Report.order(:id).page(params[:page])
   end
 
   def new
@@ -10,10 +10,12 @@ class ReportsController < ApplicationController
   end
 
   def create
-    report = Report.new(report_params)
-    report.user_id = current_user.id
-    report.save
-    redirect_to reports_path
+    @report = current_user.reports.build(report_params)
+    if @report.save
+      redirect_to reports_path
+    else
+      render :new
+    end
   end
 
   def show
@@ -28,9 +30,12 @@ class ReportsController < ApplicationController
   end
 
   def update
-    report = Report.find(params[:id])
-    report.update(report_params)
-    redirect_to report_path(report)
+    @report = Report.find(params[:id])
+    if current_user == @report.user && !@report.update(report_params)
+      render :edit
+    else
+      redirect_to report_path(@report)
+    end
   end
 
   def destroy

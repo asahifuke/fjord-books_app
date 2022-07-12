@@ -1,6 +1,4 @@
-<h1><%= t('views.common.title_edit', name: Report.model_name.human) %></h1>
-
-<%= form_with model: @comment do |form| %>
+<%= form_with model: [target, comment], url: url  do |form| %>
   <div class="field">
     <%= form.label :body %>
     <%= form.text_field :body, required: true %>

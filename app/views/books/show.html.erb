@@ -23,4 +23,4 @@
 <%= link_to t('views.common.edit'), edit_book_path(@book) %> |
 <%= link_to t('views.common.back'), books_path %>
 
-<%= render partial: 'comments/comment', locals: {target: @book, comment: @comment, comments: @comments } %>
+<%= render partial: 'book_comments/new', locals: {book: @book, comment: @comment, comments: @comments } %>

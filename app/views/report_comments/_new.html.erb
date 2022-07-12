@@ -20,8 +20,8 @@
           <td><%= comment.body %></td>
           <td><%= comment.created_at.strftime("%Y年%m月%d日") %></td>
           <% if current_user == comment.user %>
-            <td><%= link_to t('views.common.edit'), edit_comment_path(comment) %></td>
-            <td><%= link_to t('views.common.destroy'), comment_path(comment), method: :delete, data: { confirm: t('views.common.delete_confirm') } %></td>
+            <td><%= link_to t('views.common.edit'), edit_report_report_comment_path(comment.commentable_id, comment) %></td>
+            <td><%= link_to t('views.common.destroy'), report_report_comment_path(comment.commentable_id, comment), method: :delete, data: { confirm: t('views.common.delete_confirm') } %></td>
           <% end %>
         </tr>
       <% end %>
@@ -31,13 +31,5 @@
   <p><%= t('comment.nothing') %></p>
 <% end %>
 
-<%= form_with model: [target, comment] do |form| %>
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_field :body, required: true %>
-  </div>
+<%= render partial: 'comments/form', locals: {target: report, comment: comment, url: report_report_comments_path(report) } %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

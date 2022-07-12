@@ -1,0 +1,2 @@
+<h1><%= t('views.common.title_edit', name: Book.model_name.human) %></h1>
+<%= render partial: 'comments/form', locals: {target: @book, comment: @comment, url: book_book_comment_path } %>
