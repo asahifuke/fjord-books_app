@@ -91,7 +91,7 @@ class ReportsTest < ApplicationSystemTestCase
 
   test 'コメントの編集ができるようにする' do
     visit reports_path
-    click_on '詳細', match: :first
+    click_on '詳細', match: :prefer_exact
     fill_in '本文', with: @sample_comment
     click_on '登録する'
     click_on '編集', match: :prefer_exact

@@ -31,8 +31,12 @@ class ReportsController < ApplicationController
 
   def update
     @report = Report.find(params[:id])
-    if current_user == @report.user && !@report.update(report_params)
-      render :edit
+    if current_user == @report.user
+      if @report.update(report_params)
+        redirect_to report_path(@report)
+      else
+        render :edit
+      end
     else
       redirect_to report_path(@report)
     end
