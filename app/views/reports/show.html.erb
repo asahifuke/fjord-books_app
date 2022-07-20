@@ -1,0 +1,23 @@
+<h1><%= t('views.common.title_show', name: Report.model_name.human) %></h1>
+
+<p>
+  <strong><%= Report.human_attribute_name(:title) %>:</strong>
+  <%= @report.title %>
+</p>
+
+<p>
+  <strong><%= Report.human_attribute_name(:body) %>:</strong>
+  <%= @report.body %>
+</p>
+
+<p>
+  <strong><%= Report.human_attribute_name(:created_at) %>:</strong>
+  <%= @report.created_at.strftime("%Y年%m月%d日") %>
+</p>
+
+<% if current_user == @report.user %>
+  <%= link_to t('views.common.edit'), edit_report_path(@report) %> |
+<% end %>
+<%= link_to t('views.common.back'), reports_path %>
+
+<%= render partial: 'report_comments/new', locals: {report: @report, comment: @comment, comments: @comments } %>
