@@ -14,6 +14,15 @@ class User < ApplicationRecord
     end
   end
 
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session['devise.github_data']
+        user.email = data['info']['email'] if user.email.blank?
+        user.provider = data["provider"] if user.provider.blank?
+      end
+    end
+  end
+
   def self.create_unique_string
     SecureRandom.uuid
   end
